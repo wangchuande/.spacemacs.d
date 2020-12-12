@@ -44,7 +44,10 @@ This function should only modify configuration layer settings."
      (xclipboard :variables xclipboard-enable-cliphist t)
      treemacs
      git
-     ranger
+     (ranger :variables
+             ranger-override-dired 'deer
+             ranger-show-preview t)
+
      multiple-cursors
      pandoc
 
@@ -55,8 +58,8 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables org-enable-github-support t)
-     ;; (latex :variables
-     ;;        latex-backend 'lsp)
+     (latex :variables
+            latex-backend 'lsp)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd
             c-c++-adopt-subprojects t
@@ -546,9 +549,12 @@ before packages are loaded."
     (setq org-latex-compiler "xelatex"))
 
   ;;LaTeX config
-  ;; (add-hook 'LaTeX-mode-hook
-  ;;           (lambda ()
-  ;;             (setq lsp-latex-build-args '("-xelatex" "-interaction=nonstopmode" "-synctex=1" "%f"))))
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (setq lsp-latex-build-args '("-xelatex" "-outdir=lsp" "-interaction=nonstopmode" "-synctex=1" "%f"))
+              ;; SPC m c default use Tex, so we config tex engine to support Chinese
+              (setq TeX-engine 'xetex)
+              ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
