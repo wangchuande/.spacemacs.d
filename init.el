@@ -40,21 +40,23 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
-     ;; (latex :variables
-     ;;        latex-backend 'lsp)
-     html
-     ranger
-     emacs-lisp
+     helm
+     (xclipboard :variables xclipboard-enable-cliphist t)
      treemacs
      git
-     helm
+     ranger
      multiple-cursors
+     pandoc
+
+     ;; lang
+     lsp
+     dap
+     html
+     emacs-lisp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (org :variables org-enable-github-support t)
-     (xclipboard :variables xclipboard-enable-cliphist t)
-     pandoc
-     dap
-     lsp
+     ;; (latex :variables
+     ;;        latex-backend 'lsp)
      (c-c++ :variables
             c-c++-backend 'lsp-clangd
             c-c++-adopt-subprojects t
