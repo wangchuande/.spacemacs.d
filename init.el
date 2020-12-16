@@ -253,7 +253,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 14.0
+                               :size 12.0
                                :weight normal
                                :width normal)
 
@@ -533,6 +533,41 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (with-eval-after-load 'org
+    ;; set the variable org-agenda-files so that org-mode will know which files to search for TODOs and scheduled items.
+    (setq org-agenda-files (list "~/Dropbox/org/gtd/gtd.org"
+                                 "~/Dropbox/org/notes/tools.org"))
+
+    (setq org-default-notes-file "~/Dropbox/org/gtd/gtd.org")
+
+    ;; TODO keywords.
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "PROG(p)" "INTR(i)" "|" "DONE(d)" "CANCELD(c)")))
+
+    ;; Show the daily agenda by default.
+    ;; (setq org-agenda-span 'day)
+
+    ;; Hide tasks that are scheduled in the future.
+    ;; (setq org-agenda-todo-ignore-scheduled 'future)
+
+    ;; Use "second" instead of "day" for time comparison.
+    ;; It hides tasks with a scheduled time like "<2020-11-15 Sun 11:30>"
+    ;; (setq org-agenda-todo-ignore-time-comparison-use-seconds t)
+
+    ;; Hide the deadline prewarning prior to scheduled date.
+    ;; (setq org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
+
+    ;; Customized view for the daily workflow. (Command: "C-c a n")
+    ;; (setq org-agenda-custom-commands
+    ;;       '(("n" "Agenda / INTR / PROG / NEXT"
+    ;;          ((agenda "" nil)
+    ;;           (todo "INTR" nil)
+    ;;           (todo "PROG" nil)
+    ;;           (todo "NEXT" nil))
+    ;;          nil)))
+
+    )
+
   ;;LaTeX config
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
@@ -553,6 +588,3 @@ before packages are loaded."
               (setq TeX-engine 'xetex)
               ))
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
