@@ -40,6 +40,8 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
+     (chinese :variables
+              chinese-enable-fcitx t)
      emacs-lisp
      git
      helm
@@ -518,6 +520,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setenv "LC_CTYPE" "zh_CN.UTF-8")
   )
 
 (defun dotspacemacs/user-load ()
@@ -587,4 +590,6 @@ before packages are loaded."
               ;; SPC m c default use Tex, so we config tex engine to support Chinese
               (setq TeX-engine 'xetex)
               ))
+
+
   )
