@@ -520,7 +520,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setenv "LC_CTYPE" "zh_CN.UTF-8")
   )
 
 (defun dotspacemacs/user-load ()
@@ -591,5 +590,15 @@ before packages are loaded."
               (setq TeX-engine 'xetex)
               ))
 
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; https://github.com/syl20bnr/spacemacs/issues/4926 ;;
+  ;; artist-mode 左键不能画, 状态问题                  ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; (defun artist-mode-toggle-emacs-state ()
+  ;;   (if artist-mode
+  ;;       (evil-emacs-state)
+  ;;     (evil-exit-emacs-state)))
 
+  ;; (unless (eq dotspacemacs-editing-style 'emacs)
+  ;;   (add-hook 'artist-mode-hook #'artist-mode-toggle-emacs-state))
   )
