@@ -69,6 +69,10 @@ This function should only modify configuration layer settings."
             c-c++-enable-auto-newline t
             c-c++-lsp-enable-semantic-highlight 'rainbow)
      protobuf
+     (plantuml :variables
+               plantuml-jar-path "~/dev-tools/plantuml.jar"
+               ;; plantuml-output-type "txt" ;; svg png txt
+               org-plantuml-jar-path "~/dev-tools/plantuml.jar")
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
