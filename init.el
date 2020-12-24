@@ -541,14 +541,26 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (with-eval-after-load 'org
     ;; set the variable org-agenda-files so that org-mode will know which files to search for TODOs and scheduled items.
-    (setq org-agenda-files (list "~/Dropbox/org/gtd/gtd.org"
-                                 "~/Dropbox/org/notes/tools.org"))
+    (setq org-agenda-files '("~/Dropbox/org/gtd/inbox.org"
+                             "~/Dropbox/org/gtd/gtd.org"
+                             "~/Dropbox/org/gtd/tickler.org"))
 
-    (setq org-default-notes-file "~/Dropbox/org/gtd/gtd.org")
+    (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                   (file+headline "~/Dropbox/org/gtd/inbox.org" "Tasks")
+                                   "* TODO %i%?")
+                                  ("T" "Tickler" entry
+                                   (file+headline "~/Dropbox/org/gtd/tickler.org" "Tickler")
+                                   "* %i%? \n %U")))
+
+    (setq org-refile-targets '(("~/Dropbox/org/gtd/gtd.org" :maxlevel . 3)
+                               ("~/Dropbox/org/gtd/someday.org" :level . 1)
+                               ("~/Dropbox/org/gtd/tickler.org" :maxlevel . 2)))
+
+    ;; (setq org-default-notes-file "~/Dropbox/org/gtd/notes.org")
 
     ;; TODO keywords.
     (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "PROG(p)" "INTR(i)" "|" "DONE(d)" "CANCELD(c)")))
+          '((sequence "TODO(t)" "NEXT(n)" "PROG(p)"  "INTR(i)" "|" "DONE(d)" "CANCELD(c)")))
 
     ;; Show the daily agenda by default.
     ;; (setq org-agenda-span 'day)
